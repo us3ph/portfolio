@@ -281,7 +281,7 @@ export default function Portfolio() {
                 </div>
               </div>
               <div className="border-t border-slate-800/50 pt-8 text-center text-slate-500 text-sm font-light">
-                <p>© 2025 us3ph. Crafted with passion and code.</p>
+                <p>© 2026 • Made with ❤️ by us3ph</p>
               </div>
             </div>
           </footer>
