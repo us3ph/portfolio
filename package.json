@@ -1,5 +1,6 @@
 {
   "name": "portfolio-v2",
+  "homepage": "http://www.us3ph.me/portfolio/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
