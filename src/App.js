@@ -110,16 +110,25 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-background text-primary selection:bg-white selection:text-black font-sans relative overflow-hidden">
-      {/* Dynamic Background */}
-      <div
-        className="fixed inset-0 pointer-events-none opacity-20"
-        style={{
-          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.1) 0%, transparent 40%)`
-        }}
-      />
+      {/* Premium Static Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        {/* Deep Base */}
+        <div className="absolute inset-0 bg-[#050505]" />
 
-      {/* Grid Pattern Overlay */}
-      <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+        {/* Top Center Spotlight */}
+        <div
+          className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[1000px] h-[800px] rounded-full opacity-20"
+          style={{
+            background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.01) 60%, transparent 100%)',
+            filter: 'blur(80px)'
+          }}
+        />
+
+        {/* Subtle Grain/Noise Texture */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+        }} />
+      </div>
 
       <Nav />
 

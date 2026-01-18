@@ -23,6 +23,7 @@ module.exports = {
         'slide-up': 'slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
+        'blob': 'blob 7s infinite',
       },
       keyframes: {
         fadeIn: {
@@ -36,7 +37,26 @@ module.exports = {
         glow: {
           'from': { boxShadow: '0 0 10px -10px rgba(255,255,255,0)' },
           'to': { boxShadow: '0 0 25px -5px rgba(255,255,255,0.1)' },
-        }
+        },
+        blob: {
+          "0%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+          "33%": {
+            transform: "translate(30px, -50px) scale(1.1)",
+          },
+          "66%": {
+            transform: "translate(-20px, 20px) scale(0.9)",
+          },
+          "100%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+        },
+        dash: {
+          to: {
+            strokeDashoffset: "-1000",
+          },
+        },
       },
       backdropBlur: {
         xs: '2px',
