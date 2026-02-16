@@ -117,10 +117,10 @@ export default function Portfolio() {
 
         {/* Top Center Spotlight */}
         <div
-          className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[1000px] h-[800px] rounded-full opacity-20"
+          className="absolute top-[-30%] left-1/2 -translate-x-1/2 w-[1200px] h-[1000px] rounded-full opacity-20"
           style={{
-            background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.01) 60%, transparent 100%)',
-            filter: 'blur(80px)'
+            background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)',
+            filter: 'blur(120px)'
           }}
         />
 
@@ -134,7 +134,7 @@ export default function Portfolio() {
 
       <main className="pt-32 pb-20 px-6 max-w-7xl mx-auto relative z-10">
         {currentPage === 'home' && (
-          <div className="space-y-32">
+          <div className="space-y-32 animate-fade-in">
             {/* Hero Section */}
             <section className="relative pt-20">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-zinc-400 mb-8 animate-fade-in">
@@ -149,7 +149,7 @@ export default function Portfolio() {
 
               <p className="max-w-2xl text-xl text-zinc-400 leading-relaxed mb-12 animate-slide-up" style={{ animationDelay: '0.2s' }}>
                 Software Engineer specializing in AI agents, systems programming, and scalable architecture.
-                Currently crafting intelligent solutions at <span className="text-white font-medium">1337 (42 Network)</span>.
+                Crafting intelligent solutions at <span className="text-white font-medium">1337 (42 Network)</span>.
               </p>
 
               <div className="flex gap-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
