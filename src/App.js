@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Mail, ArrowRight, Code2, Brain, Zap, Linkedin, Copy, Check, Terminal, Shield, Cpu, ChevronRight, ExternalLink } from 'lucide-react';
+import { Github, Mail, ArrowRight, Code2, Brain, Zap, Linkedin, Copy, Check, Terminal, Shield, Cpu, ChevronRight, ExternalLink, Server, Lock } from 'lucide-react';
 
 export default function Portfolio() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -17,7 +17,7 @@ export default function Portfolio() {
   const projects = [
     {
       id: 1,
-      title: "AutoMate Pro",
+      title: "Vera",
       subtitle: "Intelligent AI Agent",
       category: "AI & Automation",
       description: "A cognitive AI agent featuring Claude/ChatGPT-level natural language understanding with self-discovering capabilities.",
@@ -27,13 +27,13 @@ export default function Portfolio() {
     },
     {
       id: 2,
-      title: "AutoCompSec",
+      title: "CompSec",
       subtitle: "Autonomous Security Agent",
       category: "AI & Security",
       description: "Advanced security agent that scans, analyzes, and reports on system vulnerabilities using AI-driven insights.",
       features: ["Automated CVE scanning", "SSH enumeration", "remediation planning"],
       tech: ["Python", "OpenAI API", "Security"],
-      icon: Shield
+      icon: Lock
     },
     {
       id: 3,
@@ -47,13 +47,13 @@ export default function Portfolio() {
     },
     {
       id: 4,
-      title: "Cub3D",
-      subtitle: "Ray-Casting Game Engine",
-      category: "Graphics & Game Dev",
-      description: "3D game engine using ray-casting, allowing exploration of 2D maps in first-person perspective.",
-      features: ["Ray-casting algorithm", "Texture mapping", "Collision detection"],
-      tech: ["C", "Graphics", "Game Dev"],
-      icon: Cpu
+      title: "Inception",
+      subtitle: "Docker Infrastructure",
+      category: "DevOps & Virtualization",
+      description: "System administration project focusing on Docker containerization. Sets up a secure web infrastructure with NGINX (TLSv1.2+), WordPress, and MariaDB via Docker Compose.",
+      features: ["Docker Compose", "TLSv1.2/1.3 Security", "Service Containerization"],
+      tech: ["Docker", "NGINX", "MariaDB", "WordPress"],
+      icon: Server
     },
     {
       id: 5,
