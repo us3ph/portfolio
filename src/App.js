@@ -8,8 +8,8 @@ const projects = [
     subtitle: "Intelligent Hybrid Agent",
     category: "AI & Automation",
     description: "A local-first AI assistant featuring a Hybrid NLU Engine that intelligently routes tasks between on-device processing (0ms latency) and cloud-based LLMs. Built with hardware-bound security and recursive agentic capabilities.",
-    features: ["Hybrid NLU Engine (Local/Cloud)", "Recursive Agentic Loop", "Hardware-Bound Security", "Multi-Channel Control"],
-    tech: ["Python", "PySide6", "LangChain", "SQLite"],
+    features: ["Hybrid NLU Engine (Local/Cloud)", "Recursive Agentic Loop", "Hardware-Bound Security", "Dual-Mode (Offline/Online)"],
+    tech: ["Python", "PySide6", "LangChain", "SentenceTransformers"],
     icon: Brain
   },
   {
@@ -17,8 +17,8 @@ const projects = [
     title: "CompSec",
     subtitle: "Autonomous Security Agent",
     category: "AI & Security",
-    description: "Advanced security agent that scans, analyzes, and reports on system vulnerabilities using AI-driven insights.",
-    features: ["Automated CVE scanning", "SSH enumeration", "remediation planning"],
+    description: "An advanced autonomous security agent that proactively scans, identifies, and remediates system vulnerabilities. Leveraging AI-driven insights, it executes automated CVE analysis, SSH enumeration, and critical patch management for hardened infrastructure.",
+    features: ["Automated CVE Scanning", "Intelligent Threat Analysis", "Secure SSH Enumeration", "AI-Driven Remediation Plans"],
     tech: ["Python", "OpenAI API", "Security"],
     icon: Lock
   },
@@ -38,7 +38,7 @@ const projects = [
     subtitle: "Docker Infrastructure",
     category: "DevOps & Virtualization",
     description: "System administration project focusing on Docker containerization. Sets up a secure web infrastructure with NGINX (TLSv1.2+), WordPress, and MariaDB via Docker Compose.",
-    features: ["Docker Compose", "TLSv1.2/1.3 Security", "Service Containerization"],
+    features: ["Secure Container Orchestration", "TLSv1.3 & Network Isolation", "Persistent Data Management", "Microservices Architecture"],
     tech: ["Docker", "NGINX", "MariaDB", "WordPress"],
     icon: Server
   },
@@ -48,7 +48,7 @@ const projects = [
     subtitle: "Bash-like Shell",
     category: "Systems Programming",
     description: "Custom command-line interpreter exploring process creation, file descriptors, and signal handling.",
-    features: ["Process management", "Signal handling", "Pipe & redirection"],
+    features: ["Custom Process Management", "Advanced Signal Handling", "Pipeline & I/O Redirection", "Built-in Command System"],
     tech: ["C", "Unix", "System Calls"],
     icon: Terminal
   },
@@ -58,7 +58,7 @@ const projects = [
     subtitle: "Server Administration",
     category: "DevOps",
     description: "Comprehensive Linux administration project configuring a Debian VM with strict security policies.",
-    features: ["VM configuration", "Security hardening", "Bash automation"],
+    features: ["Strict Security Hardening", "Logical Volume Management", "Automated System Monitoring", "Access Control & Firewalling"],
     tech: ["Linux", "Bash", "SysAdmin"],
     icon: Zap
   }
