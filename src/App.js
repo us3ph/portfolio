@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Mail, ArrowRight, Code2, Brain, Zap, Linkedin, Copy, Check, Terminal, Shield, ChevronRight, ExternalLink, Server, Lock } from 'lucide-react';
+import { Github, Mail, ArrowRight, Code2, Brain, Zap, Linkedin, Copy, Check, Terminal, Shield, ChevronRight, ExternalLink, Server, Lock, Database, Bot, MessageCircle } from 'lucide-react';
+
+import Vera1 from './assest/VERA1.jpeg';
+import Vera2 from './assest/VERA2.jpeg';
+import OpenSec1 from './assest/OpenSec1.jpeg';
+import OpenSec2 from './assest/OpenSec2.jpeg';
+import LLMShield1 from './assest/LLMShield1.png';
+import LLMShield2 from './assest/LLMShield2.png';
+import Atlass1 from './assest/ATLASS1.png';
+import Atlass2 from './assest/ATLASS2.png';
+import Atlass3 from './assest/ATLASS3.png';
 
 const projects = [
   {
@@ -8,29 +18,32 @@ const projects = [
     subtitle: "Intelligent Hybrid Agent",
     category: "AI & Automation",
     description: "A local-first AI assistant featuring a Hybrid NLU Engine that intelligently routes tasks between on-device processing (0ms latency) and cloud-based LLMs. Built with hardware-bound security and recursive agentic capabilities.",
-    features: ["Hybrid NLU Engine (Local/Cloud)", "Recursive Agentic Loop", "Hardware-Bound Security", "Dual-Mode (Offline/Online)"],
-    tech: ["Python", "PySide6", "LangChain", "SentenceTransformers"],
-    icon: Brain
+    features: ["Hybrid NLU Engine (Local/Cloud)", "Recursive Agentic Loop", "Hardware-Bound Security", "Multi-Channel Control"],
+    tech: ["Python", "PySide6", "LangChain", "SQLite"],
+    icon: Brain,
+    images: [Vera1, Vera2]
   },
   {
     id: 2,
-    title: "CompSec",
+    title: "OpenSec",
     subtitle: "Autonomous Security Agent",
     category: "AI & Security",
-    description: "An advanced autonomous security agent that proactively scans, identifies, and remediates system vulnerabilities. Leveraging AI-driven insights, it executes automated CVE analysis, SSH enumeration, and critical patch management for hardened infrastructure.",
-    features: ["Automated CVE Scanning", "Intelligent Threat Analysis", "Secure SSH Enumeration", "AI-Driven Remediation Plans"],
+    description: "An advanced autonomous security agent that proactively scans, identifies, and remediates system vulnerabilities. Leveraging AI driven insights, it executes automated CVE analysis, SSH enumeration, and critical patch management for hardened infrastructure.",
+    features: ["Automated CVE Scanning", "Intelligent Threat Analysis", "Secure SSH Enumeration", "AI Driven Remediation Plans"],
     tech: ["Python", "OpenAI API", "Security"],
-    icon: Lock
+    icon: Lock,
+    images: [OpenSec1, OpenSec2]
   },
   {
     id: 3,
     title: "LLMShield",
-    subtitle: "Enterprise-Grade AI Gateway",
+    subtitle: "Enterprise Grade AI Gateway",
     category: "AI Infrastructure",
-    description: "A production-grade AI Gateway acting as a secure middleware between apps and LLM providers. Features Zero Trust security, semantic caching for low latency, and intelligent routing that reduces costs by 60-80%.",
-    features: ["Zero Trust Security & PII Redaction", "Semantic Caching & Cost Routing", "Real-time Observability", "Multi-Tenant Architecture"],
+    description: "A production grade AI Gateway acting as a secure middleware between apps and LLM providers. Features Zero Trust security, semantic caching for low latency, and intelligent routing that reduces costs by 60-80%.",
+    features: ["Zero Trust Security & PII Redaction", "Semantic Caching & Cost Routing", "Real time Observability", "Multi Tenant Architecture"],
     tech: ["Python 3.11+", "FastAPI", "React 18", "PostgreSQL", "Redis"],
-    icon: Shield
+    icon: Shield,
+    images: [LLMShield1, LLMShield2]
   },
   {
     id: 4,
@@ -47,7 +60,7 @@ const projects = [
     title: "Minishell",
     subtitle: "Bash-like Shell",
     category: "Systems Programming",
-    description: "Custom command-line interpreter exploring process creation, file descriptors, and signal handling.",
+    description: "Custom command line interpreter exploring process creation, file descriptors, and signal handling.",
     features: ["Custom Process Management", "Advanced Signal Handling", "Pipeline & I/O Redirection", "Built-in Command System"],
     tech: ["C", "Unix", "System Calls"],
     icon: Terminal
@@ -61,6 +74,27 @@ const projects = [
     features: ["Strict Security Hardening", "Logical Volume Management", "Automated System Monitoring", "Access Control & Firewalling"],
     tech: ["Linux", "Bash", "SysAdmin"],
     icon: Zap
+  },
+  {
+    id: 7,
+    title: "Transcendence",
+    subtitle: "Log Management Infrastructure",
+    category: "DevOps",
+    description: "Collaborative project (team of 5) focusing on full stack development where I acted as the DevOps lead. Engineered a robust log management infrastructure using the ELK stack (Elasticsearch, Logstash, Kibana) with secure component access and data retention policies.",
+    features: ["ELK Stack Log Management", "Secure Component Access", "Log Retention & Archiving", "Collaborative DevOps Management"],
+    tech: ["Elasticsearch", "Logstash", "Kibana", "Docker"],
+    icon: Database
+  },
+  {
+    id: 8,
+    title: "ATLASS",
+    subtitle: "AI-Powered Job Matching Platform",
+    category: "AI Integrations",
+    description: "An AI-powered platform utilizing OpenRouter/OpenAI APIs to match developer profiles against job requirements. Features a 0-100 match score with detailed AI explanations, a one-click application system, and comprehensive dashboards for recruiters and applicants.",
+    features: ["AI Match Scoring System", "Detailed AI Fit Explanations", "One-Click Application Processing", "Recruiter & Applicant Dashboards"],
+    tech: ["OpenRouter API", "OpenAI", "Full-Stack"],
+    icon: Bot,
+    images: [Atlass1, Atlass2, Atlass3]
   }
 ];
 
@@ -69,6 +103,13 @@ export default function Portfolio() {
   const [copied, setCopied] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [targetProject, setTargetProject] = useState(null);
+  const [activeGalleryId, setActiveGalleryId] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const openGallery = (projectId) => {
+    setActiveGalleryId(projectId);
+    setCurrentImageIndex(0);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -100,51 +141,113 @@ export default function Portfolio() {
   };
 
   const Nav = () => (
-    <nav className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl rounded-full transition-all duration-300 ${isScrolled
-      ? 'backdrop-blur-xl bg-background/80 border border-white/10 shadow-lg shadow-black/20'
-      : 'backdrop-blur-0 bg-transparent border-transparent'
-      }`}>
-      <div className="px-6 md:px-8 h-16 flex justify-between items-center text-sm md:text-base">
-        <div
-          className="text-lg md:text-xl font-bold tracking-tighter text-white cursor-pointer hover:opacity-80 transition"
-          onClick={() => setCurrentPage('home')}
+    <div className="fixed top-6 left-0 w-full z-50 pointer-events-none flex justify-center px-6 md:px-8">
+      <div className="w-full max-w-7xl flex flex-row justify-end">
+        <nav
+          style={{
+            width: isScrolled ? '195px' : '100%',
+            transition: 'width 2.5s ease-in-out, background-color 2.5s, backdrop-filter 2.5s',
+          }}
+          className={`pointer-events-auto rounded-full overflow-hidden ${isScrolled
+            ? 'backdrop-blur-xl bg-background/80 border border-white/10 shadow-lg shadow-black/20 h-14'
+            : 'backdrop-blur-0 bg-transparent border-transparent h-16'
+            }`}
         >
-          Youssef Tabia
-        </div>
-        <div className="hidden md:flex gap-8">
-          {['home', 'projects', 'about', 'contact'].map((item) => (
-            <button
-              key={item}
-              onClick={() => setCurrentPage(item)}
-              className={`font-medium uppercase tracking-widest transition-colors ${currentPage === item ? 'text-white' : 'text-zinc-500 hover:text-white'
-                }`}
+          <div className="w-full h-full relative flex items-center">
+            <div
+              style={{
+                left: '1.5rem',
+              }}
+              className="absolute text-lg md:text-xl font-bold tracking-tighter text-white cursor-pointer hover:opacity-80 whitespace-nowrap"
+              onClick={() => setCurrentPage('home')}
             >
-              {item}
-            </button>
-          ))}
-        </div>
+              Youssef Tabia
+            </div>
+
+            <div
+              style={{
+                opacity: isScrolled ? 0 : 1,
+                pointerEvents: isScrolled ? 'none' : 'auto',
+                transition: 'opacity 1.5s ease-in-out',
+              }}
+              className="hidden md:flex gap-8 absolute right-0 pr-6 md:pr-8"
+            >
+              {['home', 'projects', 'about', 'contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => setCurrentPage(item)}
+                  className={`font-medium uppercase tracking-widest transition-colors ${currentPage === item ? 'text-white' : 'text-zinc-500 hover:text-white'
+                    }`}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+        </nav>
       </div>
-    </nav>
+    </div>
   );
 
   return (
-    <div className="min-h-screen bg-background text-primary selection:bg-white selection:text-black font-sans relative overflow-hidden">
-      <Nav />
+    <div className="min-h-screen bg-background text-primary selection:bg-white selection:text-black font-sans relative overflow-hidden flex flex-col">
+      {Nav()}
+
+      {/* Gallery Modal */}
+      {activeGalleryId && (() => {
+        const proj = projects.find(p => p.id === activeGalleryId);
+        if (!proj || !proj.images || proj.images.length === 0) return null;
+        return (
+          <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center p-4 animate-fade-in" onClick={() => setActiveGalleryId(null)}>
+            <button className="absolute top-6 right-6 md:top-8 md:right-8 p-3 md:p-4 rounded-full bg-white/10 hover:bg-white/20 text-white z-50 transition-colors animate-slide-up">
+              <span className="sr-only">Close</span>
+              <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <div className="relative w-full max-w-6xl h-[75vh] flex items-center justify-center animate-slide-up" onClick={e => e.stopPropagation()}>
+              {proj.images.length > 1 && (
+                <button
+                  onClick={() => setCurrentImageIndex(prev => prev > 0 ? prev - 1 : proj.images.length - 1)}
+                  className="absolute left-2 md:left-8 p-3 md:p-4 rounded-full bg-black/60 hover:bg-white/10 text-white transition-colors z-50 backdrop-blur-md"
+                ><ChevronRight size={32} className="rotate-180" /></button>
+              )}
+              <img src={proj.images[currentImageIndex]} alt={proj.title} className="max-w-full max-h-full object-contain rounded-2xl shadow-[0_0_80px_rgba(255,255,255,0.05)] transition-all duration-500" />
+              {proj.images.length > 1 && (
+                <button
+                  onClick={() => setCurrentImageIndex(prev => prev < proj.images.length - 1 ? prev + 1 : 0)}
+                  className="absolute right-2 md:right-8 p-3 md:p-4 rounded-full bg-black/60 hover:bg-white/10 text-white transition-colors z-50 backdrop-blur-md"
+                ><ChevronRight size={32} /></button>
+              )}
+              {proj.images.length > 1 && (
+                <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex gap-3">
+                  {proj.images.map((_, i) => (
+                    <button key={i} onClick={() => setCurrentImageIndex(i)} className={`w-3 h-3 rounded-full transition-all duration-300 ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/30 hover:bg-white/60'}`} />
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="mt-16 md:mt-20 text-white text-xl md:text-2xl font-bold tracking-tight animate-slide-up" style={{ animationDelay: '0.1s' }}>
+              {proj.title} {proj.images.length > 1 && <span className="text-zinc-500 font-medium text-base ml-3">{currentImageIndex + 1} / {proj.images.length}</span>}
+            </div>
+          </div>
+        );
+      })()}
 
       <main className="pt-32 pb-20 px-6 max-w-7xl mx-auto relative z-10 min-h-[calc(100vh-80px)]">
         <div key={currentPage}>
           {currentPage === 'home' && (
             <div className="space-y-32">
               {/* Hero Section */}
-              <section className="relative pt-20">
+              <section className="relative pt-4">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-zinc-400 mb-8 opacity-0 animate-slide-up">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   Available for hire
                 </div>
 
-                <h1 className="text-7xl md:text-9xl font-bold tracking-tighter mb-8 opacity-0 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-                  BUILDING <br />
-                  <span className="text-zinc-600">INTELLIGENCE</span>
+                <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-8 opacity-0 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 via-white to-zinc-600 bg-[length:200%_auto] animate-text-gradient">
+                    BUILDING <br />
+                    INTELLIGENCE
+                  </span>
                 </h1>
 
                 <p className="max-w-2xl text-xl text-zinc-400 leading-relaxed mb-12 opacity-0 animate-slide-up" style={{ animationDelay: '0.2s' }}>
@@ -155,14 +258,14 @@ export default function Portfolio() {
                 <div className="flex gap-4 opacity-0 animate-slide-up" style={{ animationDelay: '0.3s' }}>
                   <button
                     onClick={() => setCurrentPage('projects')}
-                    className="group flex items-center gap-3 px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-zinc-200 transition-all"
+                    className="group flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-semibold rounded-full hover:bg-zinc-200 transition-all"
                   >
                     View Projects
-                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                   <button
                     onClick={() => setCurrentPage('contact')}
-                    className="px-8 py-4 border border-white/20 rounded-full hover:bg-white/5 transition-colors"
+                    className="px-6 py-3 text-sm border border-white/20 rounded-full hover:bg-white/5 transition-colors"
                   >
                     Contact Me
                   </button>
@@ -222,16 +325,38 @@ export default function Portfolio() {
                   <div
                     key={project.id}
                     id={`project-${project.id}`}
-                    className="group p-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl hover:bg-white/5 transition-all duration-300 opacity-0 animate-slide-up"
+                    className="group relative p-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl hover:bg-white/5 transition-all duration-300 opacity-0 animate-slide-up"
                     style={{ animationDelay: `${idx * 0.1}s` }}
                   >
-                    <div className="flex justify-between items-start mb-6">
-                      <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                    {/* Top Left Floating Picture Badge (Message Bubble Style) */}
+                    <div
+                      className={`absolute -top-10 -left-10 z-30 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] ${project.images && project.images.length > 0 ? 'opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto cursor-pointer flex' : 'hidden'}`}
+                      onClick={(e) => {
+                        if (project.images && project.images.length > 0) {
+                          e.stopPropagation();
+                          openGallery(project.id);
+                        }
+                      }}
+                    >
+                      <div className="w-16 h-16 rounded-3xl rounded-br-sm border border-white/20 bg-black/80 backdrop-blur-md flex items-center justify-center shadow-2xl hover:bg-white/10 hover:scale-110 transition-all group/badge">
+                        <MessageCircle size={24} className="text-zinc-300 group-hover/badge:text-white transition-colors" />
+                        {project.images && project.images.length > 1 && (
+                          <span className="absolute -top-2 -right-2 bg-emerald-500 text-black text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg">{project.images.length}</span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Top Right Corner Link */}
+                    <div className="absolute top-6 right-6 z-20">
+                      <a href="https://github.com/us3ph" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group/link block">
+                        <ExternalLink size={20} className="text-zinc-400 group-hover/link:text-white" />
+                      </a>
+                    </div>
+
+                    <div className="mb-6 relative z-10 w-fit">
+                      <div className="p-4 rounded-2xl bg-white/5 border border-white/10 inline-block">
                         <project.icon size={40} className="text-white" />
                       </div>
-                      <a href="https://github.com/us3ph" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full hover:bg-white/10 transition-colors">
-                        <ExternalLink size={24} className="text-zinc-400 group-hover:text-white" />
-                      </a>
                     </div>
 
                     <h3 className="text-3xl font-bold mb-2">{project.title}</h3>

@@ -24,6 +24,7 @@ module.exports = {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
         'blob': 'blob 7s infinite',
+        'text-gradient': 'textGradient 5s ease infinite alternate',
       },
       keyframes: {
         fadeIn: {
@@ -37,6 +38,10 @@ module.exports = {
         glow: {
           'from': { boxShadow: '0 0 10px -10px rgba(255,255,255,0)' },
           'to': { boxShadow: '0 0 25px -5px rgba(255,255,255,0.1)' },
+        },
+        textGradient: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '100%': { backgroundPosition: '100% 50%' },
         },
         blob: {
           "0%": {
