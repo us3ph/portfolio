@@ -148,9 +148,9 @@ export default function Portfolio() {
             width: isScrolled ? '195px' : '100%',
             transition: 'width 2.5s ease-in-out, background-color 2.5s, backdrop-filter 2.5s',
           }}
-          className={`pointer-events-auto rounded-full overflow-hidden ${isScrolled
-            ? 'backdrop-blur-xl bg-background/80 border border-white/10 shadow-lg shadow-black/20 h-14'
-            : 'backdrop-blur-0 bg-transparent border-transparent h-16'
+          className={`pointer-events-auto rounded-full overflow-hidden h-16 ${isScrolled
+            ? 'backdrop-blur-xl bg-background/80 border border-white/10 shadow-lg shadow-black/20'
+            : 'backdrop-blur-0 bg-transparent border-transparent'
             }`}
         >
           <div className="w-full h-full relative flex items-center">
