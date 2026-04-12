@@ -11,6 +11,17 @@ import LLMShield2 from './assest/LLMShield2.png';
 import Atlass1 from './assest/ATLASS1.png';
 import Atlass2 from './assest/ATLASS2.png';
 import Atlass3 from './assest/ATLASS3.png';
+import Riadjadis1 from './assest/Riadjadis1.png';
+import Riadjadis2 from './assest/Riadjadis2.png';
+import Artillo1 from './assest/Artillo1.png';
+import Artillo2 from './assest/Artillo2.png';
+import FtTrancendence1 from './assest/ft_trancendence1.png';
+import FtTrancendence2 from './assest/ft_trancendence2.png';
+import Born2beroot1 from './assest/born2beroot1.png';
+import Born2beroot2 from './assest/born2beroot2.png';
+import Minishell1 from './assest/minishell1.gif';
+import Inception1 from './assest/inception1.jpg';
+import Inception2 from './assest/inception2.jpg';
 
 const projects = [
   {
@@ -54,7 +65,8 @@ const projects = [
     description: "System administration project focusing on Docker containerization. Sets up a secure web infrastructure with NGINX (TLSv1.2+), WordPress, and MariaDB via Docker Compose.",
     features: ["Secure Container Orchestration", "TLSv1.3 & Network Isolation", "Persistent Data Management", "Microservices Architecture"],
     tech: ["Docker", "NGINX", "MariaDB", "WordPress"],
-    icon: Server
+    icon: Server,
+    images: [Inception1, Inception2]
   },
   {
     id: 5,
@@ -64,7 +76,8 @@ const projects = [
     description: "Custom command line interpreter exploring process creation, file descriptors, and signal handling.",
     features: ["Custom Process Management", "Advanced Signal Handling", "Pipeline & I/O Redirection", "Built-in Command System"],
     tech: ["C", "Unix", "System Calls"],
-    icon: Terminal
+    icon: Terminal,
+    images: [Minishell1]
   },
   {
     id: 6,
@@ -74,7 +87,8 @@ const projects = [
     description: "Comprehensive Linux administration project configuring a Debian VM with strict security policies.",
     features: ["Strict Security Hardening", "Logical Volume Management", "Automated System Monitoring", "Access Control & Firewalling"],
     tech: ["Linux", "Bash", "SysAdmin"],
-    icon: Zap
+    icon: Zap,
+    images: [Born2beroot1, Born2beroot2]
   },
   {
     id: 7,
@@ -84,7 +98,8 @@ const projects = [
     description: "Collaborative project (team of 5) focusing on full stack development where I acted as the DevOps lead. Engineered a robust log management infrastructure using the ELK stack (Elasticsearch, Logstash, Kibana) with secure component access and data retention policies.",
     features: ["ELK Stack Log Management", "Secure Component Access", "Log Retention & Archiving", "Collaborative DevOps Management"],
     tech: ["Elasticsearch", "Logstash", "Kibana", "Docker"],
-    icon: Database
+    icon: Database,
+    images: [FtTrancendence1, FtTrancendence2]
   },
   {
     id: 8,
@@ -96,6 +111,28 @@ const projects = [
     tech: ["OpenRouter API", "OpenAI", "Full-Stack"],
     icon: Bot,
     images: [Atlass1, Atlass2, Atlass3]
+  },
+  {
+    id: 9,
+    title: "Riadjadis",
+    subtitle: "Booking Web Application",
+    category: "Web Development",
+    description: "A web application for booking stays and experiences with a clean reservation flow, availability checks, and a modern user dashboard for guests and administrators.",
+    features: ["Online Reservation Workflow", "Availability and Calendar Management", "Admin and User Dashboards", "Responsive Booking Experience"],
+    tech: ["React", "Node.js", "PostgreSQL", "NestJS"],
+    icon: Server,
+    images: [Riadjadis1, Riadjadis2]
+  },
+  {
+    id: 10,
+    title: "Artillo",
+    subtitle: "Artisan Store Web App",
+    category: "E-Commerce",
+    description: "An online store focused on poufs, rugs, and artisan handmade products with curated collections, product pages, and a smooth shopping experience.",
+    features: ["Catalog for Poufs and Rugs", "Artisan Product Collections", "Product Detail and Shopping Flow", "Mobile Friendly Storefront"],
+    tech: ["React", "TypeScript", "NestJS", "PostgreSQL"],
+    icon: Code2,
+    images: [Artillo1, Artillo2]
   }
 ];
 
@@ -333,7 +370,7 @@ export default function Portfolio() {
 
           {currentPage === 'projects' && (
             <div>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-4">Projects</h1>
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">Projects</h1>
               <p className="text-xl text-zinc-400 mb-16 max-w-2xl">
                 A curated collection of my technical endeavors, ranging from low-level systems to high-level system intelligence.
               </p>
@@ -358,7 +395,7 @@ export default function Portfolio() {
                     >
                       <div className="w-16 h-16 rounded-3xl rounded-br-sm border border-white/20 bg-black/80 backdrop-blur-md flex items-center justify-center shadow-2xl hover:bg-white/10 hover:scale-110 transition-all group/badge">
                         <MessageCircle size={24} className="text-zinc-300 group-hover/badge:text-white transition-colors" />
-                        {project.images && project.images.length > 1 && (
+                        {project.images && project.images.length > 0 && (
                           <span className="absolute -top-2 -right-2 bg-emerald-500 text-black text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg">{project.images.length}</span>
                         )}
                       </div>
@@ -412,7 +449,7 @@ export default function Portfolio() {
 
           {(currentPage === 'about' || currentPage === 'contact') && (
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-16 opacity-0 animate-slide-up">
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-16 opacity-0 animate-slide-up">
                 {currentPage === 'about' ? 'About Me' : 'Get in Touch'}
               </h1>
 
@@ -429,13 +466,13 @@ export default function Portfolio() {
                         I thrive at the intersection of systems programming and artificial intelligence.
                       </p>
                       <p>
-                        I don't just write code; I architect solutions. Whether it's optimizing a ray-casting engine
+                        I don't just write code, I architect solutions. Whether it's optimizing a ray-casting engine
                         or designing a secure, autonomous security scanner, I aim for excellence in performance, security, and scalability.
                       </p>
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-3 gap-6 mt-12">
+                  <div className="grid md:grid-cols-3 gap-6 -mt-2">
                     <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
                       <Code2 className="mb-4 text-white" size={32} />
                       <h3 className="text-xl font-bold text-white mb-2">Systems Mastery</h3>
@@ -515,32 +552,34 @@ export default function Portfolio() {
         </div>
       </main>
 
-      <section className="max-w-7xl mx-auto px-6 w-full mb-8">
-        <div className="rounded-3xl border border-white/10 bg-black p-5 md:p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_30px_60px_-40px_rgba(2,132,90,0.35)]">
-          <div className="flex items-center gap-3 mb-4 md:mb-6">
-            <Github size={20} className="text-zinc-300" />
-            <h3 className="text-lg md:text-xl font-semibold tracking-tight text-zinc-100">GitHub Contribution Activity</h3>
-          </div>
+      {currentPage === 'home' && (
+        <section className="max-w-7xl mx-auto px-6 w-full mb-8">
+          <div className="rounded-3xl border border-white/10 bg-black p-5 md:p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_30px_60px_-40px_rgba(2,132,90,0.35)]">
+            <div className="flex items-center gap-3 mb-4 md:mb-6">
+              <Github size={20} className="text-zinc-300" />
+              <h3 className="text-lg md:text-xl font-semibold tracking-tight text-zinc-100">GitHub Contribution Activity</h3>
+            </div>
 
-          <div className="overflow-x-auto pb-2">
-            <div className="w-max mx-auto">
-              <GitHubCalendar
-                username="us3ph"
-                colorScheme="dark"
-                blockSize={calendarBlockSize}
-                blockMargin={4}
-                fontSize={14}
-                labels={{
-                  totalCount: "{{count}} contributions in the last year",
-                }}
-                theme={{
-                  dark: ['#0b1220', '#083218', '#0b6a2d', '#1faa4b', '#6de383'],
-                }}
-              />
+            <div className="overflow-x-auto pb-2">
+              <div className="w-max mx-auto">
+                <GitHubCalendar
+                  username="us3ph"
+                  colorScheme="dark"
+                  blockSize={calendarBlockSize}
+                  blockMargin={4}
+                  fontSize={14}
+                  labels={{
+                    totalCount: "{{count}} contributions in the last year",
+                  }}
+                  theme={{
+                    dark: ['#0b1220', '#083218', '#0b6a2d', '#1faa4b', '#6de383'],
+                  }}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <footer className="border-t border-white/5 py-12 mt-20">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
