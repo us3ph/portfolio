@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Mail, ArrowRight, Code2, Brain, Zap, Linkedin, Copy, Check, Terminal, Shield, ChevronRight, ExternalLink, Server, Lock, Database, Bot, MessageCircle } from 'lucide-react';
+import { GitHubCalendar } from 'react-github-calendar';
 
 import Vera1 from './assest/VERA1.jpeg';
 import Vera2 from './assest/VERA2.jpeg';
@@ -105,6 +106,7 @@ export default function Portfolio() {
   const [targetProject, setTargetProject] = useState(null);
   const [activeGalleryId, setActiveGalleryId] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [calendarBlockSize, setCalendarBlockSize] = useState(13);
 
   const openGallery = (projectId) => {
     setActiveGalleryId(projectId);
@@ -117,6 +119,22 @@ export default function Portfolio() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const updateCalendarSize = () => {
+      if (window.innerWidth < 640) {
+        setCalendarBlockSize(8);
+      } else if (window.innerWidth < 1024) {
+        setCalendarBlockSize(10);
+      } else {
+        setCalendarBlockSize(13);
+      }
+    };
+
+    updateCalendarSize();
+    window.addEventListener('resize', updateCalendarSize);
+    return () => window.removeEventListener('resize', updateCalendarSize);
   }, []);
 
   useEffect(() => {
@@ -496,6 +514,33 @@ export default function Portfolio() {
           )}
         </div>
       </main>
+
+      <section className="max-w-7xl mx-auto px-6 w-full mb-8">
+        <div className="rounded-3xl border border-white/10 bg-black p-5 md:p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_30px_60px_-40px_rgba(2,132,90,0.35)]">
+          <div className="flex items-center gap-3 mb-4 md:mb-6">
+            <Github size={20} className="text-zinc-300" />
+            <h3 className="text-lg md:text-xl font-semibold tracking-tight text-zinc-100">GitHub Contribution Activity</h3>
+          </div>
+
+          <div className="overflow-x-auto pb-2">
+            <div className="w-max mx-auto">
+              <GitHubCalendar
+                username="us3ph"
+                colorScheme="dark"
+                blockSize={calendarBlockSize}
+                blockMargin={4}
+                fontSize={14}
+                labels={{
+                  totalCount: "{{count}} contributions in the last year",
+                }}
+                theme={{
+                  dark: ['#0b1220', '#083218', '#0b6a2d', '#1faa4b', '#6de383'],
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <footer className="border-t border-white/5 py-12 mt-20">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
