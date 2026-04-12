@@ -343,14 +343,28 @@ export default function Portfolio() {
             <div className="space-y-32">
               {/* Hero Section */}
               <section className="relative pt-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-zinc-400 mb-8 opacity-0 animate-slide-up">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  Available for hire
+                <div className="w-full flex justify-center md:justify-start">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-zinc-400 mb-8 opacity-0 animate-slide-up">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    Available for hire
+                  </div>
                 </div>
+                <style jsx>{`
+                  @media (max-width: 767px) {
+                    .available-hire-mobile {
+                      display: flex;
+                      justify-content: center;
+                      width: 100%;
+                    }
+                  }
+                `}</style>
+                <div className="available-hire-mobile" />
 
                 <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-8 opacity-0 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 via-white to-zinc-600 bg-[length:200%_auto] animate-text-gradient">
-                    BUILDING <br />
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 via-white to-zinc-600 bg-[length:200%_auto] animate-text-gradient text-center md:text-left">
+                    BUILDING
+                  </span>
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 via-white to-zinc-600 bg-[length:200%_auto] animate-text-gradient text-left">
                     INTELLIGENCE
                   </span>
                 </h1>
@@ -379,17 +393,18 @@ export default function Portfolio() {
 
               {/* Featured Projects Preview */}
               <section className="max-w-6xl mx-auto w-full translate-x-[2px] md:translate-x-0">
-                <div className="flex justify-between items-end mb-12">
-                  <h2 className="text-4xl font-bold tracking-tight">Selected Works</h2>
+                <div className="flex flex-col md:flex-row md:justify-between items-center md:items-end mb-12">
+                  <h2 className="text-4xl font-bold tracking-tight text-center w-full md:w-auto mb-4 md:mb-0">Selected Works</h2>
                   <button
                     onClick={() => setCurrentPage('projects')}
-                    className="relative -top-1 md:top-0 text-zinc-400 hover:text-white flex items-center gap-2 transition-colors"
+                    className="relative -top-1 md:top-0 text-zinc-400 hover:text-white flex items-center justify-center md:justify-start transition-colors animate-bounce-right mt-10 md:mt-0"
+                    aria-label="View Projects"
                   >
-                    View All <ChevronRight size={20} />
+                    <ChevronRight size={28} className="animate-bounce-x" />
                   </button>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-2 md:mt-0">
                   {projects.slice(0, 3).map((project, idx) => (
                     <div
                       key={project.id}
@@ -399,19 +414,29 @@ export default function Portfolio() {
                       }}
                       className="group relative p-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl hover:bg-white/5 transition-all duration-300 cursor-pointer overflow-hidden"
                     >
-                      <div className="mb-5 md:mb-6 flex items-center gap-4 md:block">
-                        <div className="inline-flex p-2 md:p-3 rounded-2xl bg-white/5 text-white group-hover:scale-110 transition-transform duration-500 shrink-0">
+                      <div className="mb-5 md:mb-6 flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-4">
+                        <div className="inline-flex p-2 md:p-3 rounded-2xl bg-white/5 text-white group-hover:scale-110 transition-transform duration-500 shrink-0 mb-2 md:mb-0">
                           <project.icon size={24} className="md:w-[30px] md:h-[30px]" />
                         </div>
-                        <h3 className="text-xl md:text-2xl font-bold mb-0 md:mb-2 group-hover:text-zinc-200 transition-colors">{project.title}</h3>
+                        <h3 className="text-xl md:text-2xl font-bold mb-0 md:mb-2 group-hover:text-zinc-200 transition-colors text-center w-full md:text-left">{project.title}</h3>
                       </div>
                       <p className="text-zinc-400 mb-6 line-clamp-3">{project.description}</p>
                       <div className="grid grid-flow-col auto-cols-fr gap-1 md:gap-2 md:flex md:flex-wrap">
-                        {project.tech.map(t => (
-                          <span key={t} className="min-w-0 text-center text-[10px] md:text-xs px-1 md:px-3 py-1 rounded-full border border-white/10 bg-white/5 text-zinc-400">
-                            {t}
-                          </span>
-                        ))}
+                        <div className="w-full flex-nowrap overflow-x-auto whitespace-nowrap md:whitespace-nowrap md:overflow-visible">
+                          {project.tech.filter(t => t !== 'Redis').length > 0 && (
+                            <div className="flex justify-center md:justify-start w-full">
+                              {project.tech.filter(t => t !== 'Redis').map(t => (
+                                <span key={t} className="inline-block min-w-0 text-center text-[10px] md:text-xs px-1 md:px-3 py-1 rounded-full border border-white/10 bg-white/5 text-zinc-400 mr-1 last:mr-0">
+                                  {t}
+                                </span>
+                              ))}
+                              {/* Add extra badge for OpenSec project on desktop */}
+                              {project.title === 'OpenSec' && (
+                                <span className="hidden md:inline-block min-w-0 text-center text-[10px] md:text-xs px-1 md:px-3 py-1 rounded-full border border-white/10 bg-white/5 text-zinc-400 ml-1">AI</span>
+                              )}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -422,7 +447,7 @@ export default function Portfolio() {
 
           {currentPage === 'projects' && (
             <div>
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">Projects</h1>
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-center md:text-left md:text-left">Projects</h1>
               <p className="text-xl text-zinc-400 mb-16 max-w-2xl text-center md:text-left mx-auto md:mx-0">
                 A curated collection of my technical endeavors, ranging from low-level systems to high-level system intelligence.
               </p>
@@ -437,7 +462,7 @@ export default function Portfolio() {
                   >
                     {/* Top Left Floating Picture Badge (Message Bubble Style) */}
                     <div
-                      className={`absolute -top-10 -left-10 z-30 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] ${project.images && project.images.length > 0 ? 'hidden md:flex opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto cursor-pointer' : 'hidden'}`}
+                      className={`absolute -top-10 -left-6 md:-left-10 z-30 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] ${project.images && project.images.length > 0 ? 'opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto cursor-pointer flex' : 'hidden'}`}
                       onClick={(e) => {
                         if (project.images && project.images.length > 0) {
                           e.stopPropagation();
@@ -461,10 +486,12 @@ export default function Portfolio() {
                     </div>
 
                     <div className="mb-5 md:mb-6 relative z-10 flex items-center gap-4 md:block">
-                      <div className="p-2.5 md:p-4 rounded-2xl bg-white/5 border border-white/10 inline-flex shrink-0">
-                        <project.icon size={30} className="text-white md:w-10 md:h-10" />
+                      <div className="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-4 w-full mb-5 md:mb-6">
+                        <div className="p-2.5 md:p-4 rounded-2xl bg-white/5 border border-white/10 inline-flex shrink-0 mb-2 md:mb-0">
+                          <project.icon size={30} className="text-white md:w-10 md:h-10" />
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold mb-0 md:mb-2 group-hover:text-zinc-200 transition-colors text-center w-full md:text-left md:self-center">{project.title}</h3>
                       </div>
-                      <h3 className="text-2xl md:text-3xl font-bold mb-0 md:mb-2">{project.title}</h3>
                     </div>
                     <div className="flex gap-3 mb-6">
                       <span className="text-zinc-500 font-mono text-sm border-l border-zinc-700 pl-3">
@@ -501,14 +528,14 @@ export default function Portfolio() {
           {(currentPage === 'about' || currentPage === 'contact') && (
             <div className="max-w-4xl mx-auto">
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-16 opacity-0 animate-slide-up">
-                {currentPage === 'about' ? 'About Me' : 'Get in Touch'}
+                {currentPage === 'about' ? <span className="text-center md:text-left block">About Me</span> : 'Get in Touch'}
               </h1>
 
               {currentPage === 'about' ? (
                 <div className="grid gap-12 text-lg text-zinc-400 leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: '0.1s' }}>
                   <div className="prose prose-invert max-w-none">
                     <p className="text-2xl text-white font-light mb-8">
-                      I'm <span className="font-semibold">Youssef Tabia</span>, a software engineer from Morocco based in<span className="text-white">1337</span> (42 Network).
+                      <span className="text-center md:text-left block">I'm <span className="font-semibold">Youssef Tabia</span>, a software engineer from Morocco based in<span className="text-white">1337</span> (42 Network).</span>
                     </p>
                     <div className="grid gap-8 border-l-2 border-white/10 pl-8">
                       <p>
@@ -524,18 +551,18 @@ export default function Portfolio() {
                   </div>
 
                   <div className="grid md:grid-cols-3 gap-6 -mt-2">
-                    <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
-                      <Code2 className="mb-4 text-white" size={32} />
+                    <div className="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center text-center md:items-center md:text-center">
+                      <Code2 className="mb-4 text-white mx-auto" size={32} />
                       <h3 className="text-xl font-bold text-white mb-2">Systems Mastery</h3>
                       <p className="text-sm">Low-level control with C/C++, Linux, and kernel logic.</p>
                     </div>
-                    <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
-                      <Brain className="mb-4 text-white" size={32} />
+                    <div className="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center text-center md:items-center md:text-center">
+                      <Brain className="mb-4 text-white mx-auto" size={32} />
                       <h3 className="text-xl font-bold text-white mb-2">AI Engineering</h3>
                       <p className="text-sm">LLM integration, RAG pipelines, and agentic workflows.</p>
                     </div>
-                    <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
-                      <Shield className="mb-4 text-white" size={32} />
+                    <div className="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center text-center md:items-center md:text-center">
+                      <Shield className="mb-4 text-white mx-auto" size={32} />
                       <h3 className="text-xl font-bold text-white mb-2">Security First</h3>
                       <p className="text-sm">Vulnerability assessment, network safety, and secure coding.</p>
                     </div>
