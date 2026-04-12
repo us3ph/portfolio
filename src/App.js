@@ -53,7 +53,7 @@ const projects = [
     category: "AI Infrastructure",
     description: "A production grade AI Gateway acting as a secure middleware between apps and LLM providers. Features Zero Trust security, semantic caching for low latency, and intelligent routing that reduces costs by 60-80%.",
     features: ["Zero Trust Security & PII Redaction", "Semantic Caching & Cost Routing", "Real time Observability", "Multi Tenant Architecture"],
-    tech: ["Python 3.11+", "FastAPI", "React 18", "PostgreSQL", "Redis"],
+    tech: ["Python", "FastAPI", "React 18", "PostgreSQL", "Redis"],
     icon: Shield,
     images: [LLMShield1, LLMShield2]
   },
@@ -140,10 +140,14 @@ export default function Portfolio() {
   const [currentPage, setCurrentPage] = useState('home');
   const [copied, setCopied] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [targetProject, setTargetProject] = useState(null);
   const [activeGalleryId, setActiveGalleryId] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [calendarBlockSize, setCalendarBlockSize] = useState(13);
+  const [calendarBlockMargin, setCalendarBlockMargin] = useState(4);
+  const [calendarFontSize, setCalendarFontSize] = useState(14);
 
   const openGallery = (projectId) => {
     setActiveGalleryId(projectId);
@@ -160,12 +164,20 @@ export default function Portfolio() {
 
   useEffect(() => {
     const updateCalendarSize = () => {
+      setIsMobileView(window.innerWidth < 768);
+
       if (window.innerWidth < 640) {
-        setCalendarBlockSize(8);
+        setCalendarBlockSize(4);
+        setCalendarBlockMargin(2);
+        setCalendarFontSize(10);
       } else if (window.innerWidth < 1024) {
         setCalendarBlockSize(10);
+        setCalendarBlockMargin(3);
+        setCalendarFontSize(12);
       } else {
         setCalendarBlockSize(13);
+        setCalendarBlockMargin(4);
+        setCalendarFontSize(14);
       }
     };
 
@@ -173,6 +185,10 @@ export default function Portfolio() {
     window.addEventListener('resize', updateCalendarSize);
     return () => window.removeEventListener('resize', updateCalendarSize);
   }, []);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [currentPage]);
 
   useEffect(() => {
     if (currentPage === 'projects' && targetProject) {
@@ -197,10 +213,10 @@ export default function Portfolio() {
 
   const Nav = () => (
     <div className="fixed top-6 left-0 w-full z-50 pointer-events-none flex justify-center px-6 md:px-8">
-      <div className="w-full max-w-7xl flex flex-row justify-end">
+      <div className="w-full max-w-7xl flex flex-row justify-end relative">
         <nav
           style={{
-            width: isScrolled ? '195px' : '100%',
+            width: isScrolled ? (isMobileView ? '170px' : '195px') : '100%',
             transition: 'width 2.5s ease-in-out, background-color 2.5s, backdrop-filter 2.5s',
           }}
           className={`pointer-events-auto rounded-full overflow-hidden h-16 ${isScrolled
@@ -238,8 +254,42 @@ export default function Portfolio() {
                 </button>
               ))}
             </div>
+
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              style={{
+                opacity: isScrolled ? 0 : 1,
+                pointerEvents: isScrolled ? 'none' : 'auto',
+                transition: 'opacity 1.5s ease-in-out',
+              }}
+              className="md:hidden absolute right-3 p-3 rounded-2xl border border-white/15 bg-black/60 backdrop-blur-xl text-white hover:bg-white/10 transition-colors"
+              aria-label="Toggle menu"
+            >
+              <span className="relative block w-5 h-4">
+                <span className={`absolute left-0 top-0 h-[2px] w-5 bg-white rounded-full transition-all duration-300 ${mobileMenuOpen ? 'top-[7px] rotate-45' : ''}`} />
+                <span className={`absolute left-0 top-[7px] h-[2px] w-5 bg-white rounded-full transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
+                <span className={`absolute left-0 top-[14px] h-[2px] w-5 bg-white rounded-full transition-all duration-300 ${mobileMenuOpen ? 'top-[7px] -rotate-45' : ''}`} />
+              </span>
+            </button>
           </div>
         </nav>
+
+        <div
+          className={`md:hidden pointer-events-auto absolute top-20 right-0 w-52 rounded-2xl border border-white/10 bg-zinc-950/95 backdrop-blur-xl shadow-2xl shadow-black/40 transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}
+        >
+          <div className="p-2">
+            {['home', 'projects', 'about', 'contact'].map((item) => (
+              <button
+                key={item}
+                onClick={() => setCurrentPage(item)}
+                className={`w-full text-left px-4 py-3 rounded-xl text-sm uppercase tracking-widest transition-colors ${currentPage === item ? 'bg-white/10 text-white' : 'text-zinc-400 hover:bg-white/5 hover:text-white'}`}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -254,7 +304,7 @@ export default function Portfolio() {
         if (!proj || !proj.images || proj.images.length === 0) return null;
         return (
           <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center p-4 animate-fade-in" onClick={() => setActiveGalleryId(null)}>
-            <button className="absolute top-6 right-6 md:top-8 md:right-8 p-3 md:p-4 rounded-full bg-white/10 hover:bg-white/20 text-white z-50 transition-colors animate-slide-up">
+            <button className="absolute top-6 right-6 md:top-8 md:right-8 p-3 md:p-4 rounded-full bg-white/10 hover:bg-white/20 text-white z-50 transition-all duration-300 hover:scale-110 hover:rotate-90 animate-slide-up">
               <span className="sr-only">Close</span>
               <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
@@ -305,12 +355,12 @@ export default function Portfolio() {
                   </span>
                 </h1>
 
-                <p className="max-w-2xl text-xl text-zinc-400 leading-relaxed mb-12 opacity-0 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+                <p className="max-w-[38ch] mx-auto md:mx-0 text-base md:text-xl text-zinc-400 leading-7 md:leading-relaxed text-center md:text-left mb-12 opacity-0 animate-slide-up" style={{ animationDelay: '0.2s' }}>
                   Software Engineer specializing in AI agents, systems programming, and scalable architecture.
                   Crafting intelligent solutions at <span className="text-white font-medium">1337 (42 Network)</span>.
                 </p>
 
-                <div className="flex gap-4 opacity-0 animate-slide-up" style={{ animationDelay: '0.3s' }}>
+                <div className="flex flex-wrap justify-center md:justify-start gap-4 opacity-0 animate-slide-up" style={{ animationDelay: '0.3s' }}>
                   <button
                     onClick={() => setCurrentPage('projects')}
                     className="group flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-semibold rounded-full hover:bg-zinc-200 transition-all"
@@ -328,12 +378,12 @@ export default function Portfolio() {
               </section>
 
               {/* Featured Projects Preview */}
-              <section>
+              <section className="max-w-6xl mx-auto w-full translate-x-[2px] md:translate-x-0">
                 <div className="flex justify-between items-end mb-12">
                   <h2 className="text-4xl font-bold tracking-tight">Selected Works</h2>
                   <button
                     onClick={() => setCurrentPage('projects')}
-                    className="text-zinc-400 hover:text-white flex items-center gap-2 transition-colors"
+                    className="relative -top-1 md:top-0 text-zinc-400 hover:text-white flex items-center gap-2 transition-colors"
                   >
                     View All <ChevronRight size={20} />
                   </button>
@@ -347,16 +397,18 @@ export default function Portfolio() {
                         setTargetProject(project.id);
                         setCurrentPage('projects');
                       }}
-                      className="group relative p-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-sm hover:border-white/30 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                      className="group relative p-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl hover:bg-white/5 transition-all duration-300 cursor-pointer overflow-hidden"
                     >
-                      <div className="mb-6 inline-flex p-3 rounded-2xl bg-white/5 text-white group-hover:scale-110 transition-transform duration-500">
-                        <project.icon size={32} />
+                      <div className="mb-5 md:mb-6 flex items-center gap-4 md:block">
+                        <div className="inline-flex p-2 md:p-3 rounded-2xl bg-white/5 text-white group-hover:scale-110 transition-transform duration-500 shrink-0">
+                          <project.icon size={24} className="md:w-[30px] md:h-[30px]" />
+                        </div>
+                        <h3 className="text-xl md:text-2xl font-bold mb-0 md:mb-2 group-hover:text-zinc-200 transition-colors">{project.title}</h3>
                       </div>
-                      <h3 className="text-2xl font-bold mb-2 group-hover:text-zinc-200 transition-colors">{project.title}</h3>
                       <p className="text-zinc-400 mb-6 line-clamp-3">{project.description}</p>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="grid grid-flow-col auto-cols-fr gap-1 md:gap-2 md:flex md:flex-wrap">
                         {project.tech.map(t => (
-                          <span key={t} className="text-xs px-3 py-1 rounded-full border border-white/10 bg-white/5 text-zinc-400">
+                          <span key={t} className="min-w-0 text-center text-[10px] md:text-xs px-1 md:px-3 py-1 rounded-full border border-white/10 bg-white/5 text-zinc-400">
                             {t}
                           </span>
                         ))}
@@ -371,7 +423,7 @@ export default function Portfolio() {
           {currentPage === 'projects' && (
             <div>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">Projects</h1>
-              <p className="text-xl text-zinc-400 mb-16 max-w-2xl">
+              <p className="text-xl text-zinc-400 mb-16 max-w-2xl text-center md:text-left mx-auto md:mx-0">
                 A curated collection of my technical endeavors, ranging from low-level systems to high-level system intelligence.
               </p>
 
@@ -385,7 +437,7 @@ export default function Portfolio() {
                   >
                     {/* Top Left Floating Picture Badge (Message Bubble Style) */}
                     <div
-                      className={`absolute -top-10 -left-10 z-30 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] ${project.images && project.images.length > 0 ? 'opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto cursor-pointer flex' : 'hidden'}`}
+                      className={`absolute -top-10 -left-10 z-30 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] ${project.images && project.images.length > 0 ? 'hidden md:flex opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto cursor-pointer' : 'hidden'}`}
                       onClick={(e) => {
                         if (project.images && project.images.length > 0) {
                           e.stopPropagation();
@@ -408,13 +460,12 @@ export default function Portfolio() {
                       </a>
                     </div>
 
-                    <div className="mb-6 relative z-10 w-fit">
-                      <div className="p-4 rounded-2xl bg-white/5 border border-white/10 inline-block">
-                        <project.icon size={40} className="text-white" />
+                    <div className="mb-5 md:mb-6 relative z-10 flex items-center gap-4 md:block">
+                      <div className="p-2.5 md:p-4 rounded-2xl bg-white/5 border border-white/10 inline-flex shrink-0">
+                        <project.icon size={30} className="text-white md:w-10 md:h-10" />
                       </div>
+                      <h3 className="text-2xl md:text-3xl font-bold mb-0 md:mb-2">{project.title}</h3>
                     </div>
-
-                    <h3 className="text-3xl font-bold mb-2">{project.title}</h3>
                     <div className="flex gap-3 mb-6">
                       <span className="text-zinc-500 font-mono text-sm border-l border-zinc-700 pl-3">
                         {project.category}
@@ -434,9 +485,9 @@ export default function Portfolio() {
                       ))}
                     </div>
 
-                    <div className="flex flex-wrap gap-2 pt-6 border-t border-white/10">
+                    <div className="grid grid-flow-col auto-cols-fr gap-1 md:gap-2 md:flex md:flex-wrap pt-6 border-t border-white/10">
                       {project.tech.map(t => (
-                        <span key={t} className="text-sm px-4 py-1.5 rounded-full bg-white/5 text-zinc-300 border border-white/5">
+                        <span key={t} className="min-w-0 text-center text-[10px] md:text-sm px-1.5 md:px-4 py-1 md:py-1.5 rounded-full bg-white/5 text-zinc-300 border border-white/5">
                           {t}
                         </span>
                       ))}
@@ -560,14 +611,14 @@ export default function Portfolio() {
               <h3 className="text-lg md:text-xl font-semibold tracking-tight text-zinc-100">GitHub Contribution Activity</h3>
             </div>
 
-            <div className="overflow-x-auto pb-2">
+            <div className="pb-2">
               <div className="w-max mx-auto">
                 <GitHubCalendar
                   username="us3ph"
                   colorScheme="dark"
                   blockSize={calendarBlockSize}
-                  blockMargin={4}
-                  fontSize={14}
+                  blockMargin={calendarBlockMargin}
+                  fontSize={calendarFontSize}
                   labels={{
                     totalCount: "{{count}} contributions in the last year",
                   }}
