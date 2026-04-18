@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Mail, ArrowRight, Code2, Brain, Zap, Linkedin, Copy, Check, Terminal, Shield, ChevronRight, ExternalLink, Server, Lock, Database, Bot, MessageCircle } from 'lucide-react';
+import { Github, Mail, ArrowRight, Code2, Brain, Zap, Linkedin, Copy, Check, Terminal, Shield, ChevronRight, ExternalLink, Server, Lock, Database, Bot, Images } from 'lucide-react';
 import { GitHubCalendar } from 'react-github-calendar';
 
 import Vera1 from './assest/VERA1.jpeg';
@@ -219,15 +219,17 @@ export default function Portfolio() {
             width: isScrolled ? (isMobileView ? '170px' : '195px') : '100%',
             transition: 'width 2.5s ease-in-out, background-color 2.5s, backdrop-filter 2.5s',
           }}
-          className={`pointer-events-auto rounded-full overflow-hidden h-16 ${isScrolled
-            ? 'backdrop-blur-xl bg-background/80 border border-white/10 shadow-lg shadow-black/20'
-            : 'backdrop-blur-0 bg-transparent border-transparent'
-            }`}
+          className="pointer-events-auto overflow-hidden h-16 bg-transparent border-transparent"
         >
           <div className="w-full h-full relative flex items-center">
             <div
               style={{
-                left: '1.5rem',
+                left: isScrolled ? '50%' : '1.5rem',
+                transform: isScrolled ? 'translate3d(-50%, 0, 0)' : 'translate3d(0, 0, 0)',
+                transition: 'left 2.5s ease-in-out, transform 2.5s ease-in-out',
+                WebkitBackfaceVisibility: 'hidden',
+                backfaceVisibility: 'hidden',
+                willChange: 'transform, left'
               }}
               className="absolute text-lg md:text-xl font-bold tracking-tighter text-white cursor-pointer hover:opacity-80 whitespace-nowrap"
               onClick={() => setCurrentPage('home')}
@@ -247,7 +249,7 @@ export default function Portfolio() {
                 <button
                   key={item}
                   onClick={() => setCurrentPage(item)}
-                  className={`font-medium uppercase tracking-widest transition-colors ${currentPage === item ? 'text-white' : 'text-zinc-500 hover:text-white'
+                  className={`text-sm font-medium uppercase tracking-widest transition-colors ${currentPage === item ? 'text-white' : 'text-zinc-500 hover:text-white'
                     }`}
                 >
                   {item}
@@ -283,7 +285,7 @@ export default function Portfolio() {
               <button
                 key={item}
                 onClick={() => setCurrentPage(item)}
-                className={`w-full text-left px-4 py-3 rounded-xl text-sm uppercase tracking-widest transition-colors ${currentPage === item ? 'bg-white/10 text-white' : 'text-zinc-400 hover:bg-white/5 hover:text-white'}`}
+                className={`w-full text-left px-4 py-3 rounded-xl text-xs uppercase tracking-widest transition-colors ${currentPage === item ? 'bg-white/10 text-white' : 'text-zinc-400 hover:bg-white/5 hover:text-white'}`}
               >
                 {item}
               </button>
@@ -360,7 +362,7 @@ export default function Portfolio() {
                 `}</style>
                 <div className="available-hire-mobile" />
 
-                <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-8 opacity-0 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 opacity-0 animate-slide-up" style={{ animationDelay: '0.1s' }}>
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 via-white to-zinc-600 bg-[length:200%_auto] animate-text-gradient text-center md:text-left">
                     BUILDING
                   </span>
@@ -414,17 +416,17 @@ export default function Portfolio() {
                       }}
                       className="group relative p-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl hover:bg-white/5 transition-all duration-300 cursor-pointer overflow-hidden"
                     >
-                      <div className="mb-5 md:mb-6 flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-4">
-                        <div className="inline-flex p-2 md:p-3 rounded-2xl bg-white/5 text-white group-hover:scale-110 transition-transform duration-500 shrink-0 mb-2 md:mb-0">
-                          <project.icon size={24} className="md:w-[30px] md:h-[30px]" />
+                      <div className="mb-5 md:mb-6 flex flex-col md:flex-row items-center md:justify-center gap-2 md:gap-4">
+                        <div className="p-2.5 rounded-2xl bg-white/5 border border-white/10 inline-flex text-white shrink-0 mb-3 md:mb-0">
+                          <project.icon size={24} className="md:w-6 md:h-6" />
                         </div>
-                        <h3 className="text-xl md:text-2xl font-bold mb-0 md:mb-2 group-hover:text-zinc-200 transition-colors text-center w-full md:text-left">{project.title}</h3>
+                        <h3 className="text-2xl font-bold mb-0 group-hover:text-zinc-200 transition-colors text-center w-full md:w-auto">{project.title}</h3>
                       </div>
                       <p className="text-zinc-400 mb-6 line-clamp-3">{project.description}</p>
                       <div className="grid grid-flow-col auto-cols-fr gap-1 md:gap-2 md:flex md:flex-wrap">
                         <div className="w-full flex-nowrap overflow-x-auto whitespace-nowrap md:whitespace-nowrap md:overflow-visible">
                           {project.tech.filter(t => t !== 'Redis').length > 0 && (
-                            <div className="flex justify-center md:justify-start w-full">
+                            <div className="flex justify-center md:justify-center w-full">
                               {project.tech.filter(t => t !== 'Redis').map(t => (
                                 <span key={t} className="inline-block min-w-0 text-center text-[10px] md:text-xs px-1 md:px-3 py-1 rounded-full border border-white/10 bg-white/5 text-zinc-400 mr-1 last:mr-0">
                                   {t}
@@ -447,22 +449,22 @@ export default function Portfolio() {
 
           {currentPage === 'projects' && (
             <div>
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-center md:text-left md:text-left">Projects</h1>
+              <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-center md:text-left md:text-left">Projects</h1>
               <p className="text-xl text-zinc-400 mb-16 max-w-2xl text-center md:text-left mx-auto md:mx-0">
                 A curated collection of my technical endeavors, ranging from low-level systems to high-level system intelligence.
               </p>
 
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-6">
                 {projects.map((project, idx) => (
                   <div
                     key={project.id}
                     id={`project-${project.id}`}
-                    className="group relative p-8 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl hover:bg-white/5 transition-all duration-300 opacity-0 animate-slide-up"
+                    className="group relative p-6 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl hover:bg-white/5 transition-all duration-300 opacity-0 animate-slide-up"
                     style={{ animationDelay: `${idx * 0.1}s` }}
                   >
                     {/* Top Left Floating Picture Badge (Message Bubble Style) */}
                     <div
-                      className={`absolute -top-10 -left-6 md:-left-10 z-30 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] ${project.images && project.images.length > 0 ? 'opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto cursor-pointer flex' : 'hidden'}`}
+                      className={`absolute -top-6 -left-6 z-30 transition-opacity duration-300 ${project.images && project.images.length > 0 ? 'opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto cursor-pointer flex' : 'hidden'}`}
                       onClick={(e) => {
                         if (project.images && project.images.length > 0) {
                           e.stopPropagation();
@@ -470,8 +472,8 @@ export default function Portfolio() {
                         }
                       }}
                     >
-                      <div className="w-16 h-16 rounded-3xl rounded-br-sm border border-white/20 bg-black/80 backdrop-blur-md flex items-center justify-center shadow-2xl hover:bg-white/10 hover:scale-110 transition-all group/badge">
-                        <MessageCircle size={24} className="text-zinc-300 group-hover/badge:text-white transition-colors" />
+                      <div className="w-12 h-12 rounded-2xl rounded-br-sm border border-white/20 bg-black/80 backdrop-blur-md flex items-center justify-center shadow-2xl hover:bg-white/10 transition-colors group/badge">
+                        <Images size={20} className="text-zinc-300 group-hover/badge:text-white transition-colors" />
                         {project.images && project.images.length > 0 && (
                           <span className="absolute -top-2 -right-2 bg-emerald-500 text-black text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg">{project.images.length}</span>
                         )}
@@ -487,10 +489,10 @@ export default function Portfolio() {
 
                     <div className="mb-5 md:mb-6 relative z-10 flex items-center gap-4 md:block">
                       <div className="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-4 w-full mb-5 md:mb-6">
-                        <div className="p-2.5 md:p-4 rounded-2xl bg-white/5 border border-white/10 inline-flex shrink-0 mb-2 md:mb-0">
-                          <project.icon size={30} className="text-white md:w-10 md:h-10" />
+                        <div className="p-2.5 rounded-2xl bg-white/5 border border-white/10 inline-flex shrink-0 mb-2 md:mb-0">
+                          <project.icon size={24} className="text-white md:w-6 md:h-6" />
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-bold mb-0 md:mb-2 group-hover:text-zinc-200 transition-colors text-center w-full md:text-left md:self-center">{project.title}</h3>
+                        <h3 className="text-2xl md:text-2xl font-bold mb-0 md:mb-2 group-hover:text-zinc-200 transition-colors text-center w-full md:text-left md:self-center">{project.title}</h3>
                       </div>
                     </div>
                     <div className="flex gap-3 mb-6">
@@ -512,7 +514,7 @@ export default function Portfolio() {
                       ))}
                     </div>
 
-                    <div className="grid grid-flow-col auto-cols-fr gap-1 md:gap-2 md:flex md:flex-wrap pt-6 border-t border-white/10">
+                    <div className="grid grid-flow-col auto-cols-fr gap-1 md:gap-2 md:flex md:flex-wrap md:justify-center pt-6 border-t border-white/10">
                       {project.tech.map(t => (
                         <span key={t} className="min-w-0 text-center text-[10px] md:text-sm px-1.5 md:px-4 py-1 md:py-1.5 rounded-full bg-white/5 text-zinc-300 border border-white/5">
                           {t}
@@ -527,7 +529,7 @@ export default function Portfolio() {
 
           {(currentPage === 'about' || currentPage === 'contact') && (
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-16 opacity-0 animate-slide-up">
+              <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-16 opacity-0 animate-slide-up">
                 {currentPage === 'about' ? <span className="text-center md:text-left block">About Me</span> : 'Get in Touch'}
               </h1>
 
@@ -632,8 +634,8 @@ export default function Portfolio() {
 
       {currentPage === 'home' && (
         <section className="max-w-7xl mx-auto px-6 w-full mb-8">
-          <div className="rounded-3xl border border-white/10 bg-black p-5 md:p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_30px_60px_-40px_rgba(2,132,90,0.35)]">
-            <div className="flex items-center gap-3 mb-4 md:mb-6">
+          <div className="w-fit mx-auto rounded-3xl border border-white/10 bg-black p-5 md:p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_30px_60px_-40px_rgba(2,132,90,0.35)]">
+            <div className="flex items-center justify-center md:justify-start gap-3 mb-4 md:mb-6 pl-2">
               <Github size={20} className="text-zinc-300" />
               <h3 className="text-lg md:text-xl font-semibold tracking-tight text-zinc-100">GitHub Contribution Activity</h3>
             </div>
