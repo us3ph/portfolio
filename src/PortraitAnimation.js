@@ -98,8 +98,8 @@ const PortraitAnimation = () => {
     let animationFrameId;
 
     const renderLoop = () => {
-      // Linear interpolation for buttery smooth camera lag
-      currentFrame += (targetFrame - currentFrame) * 0.04;
+      // Linear interpolation for buttery smooth camera lag (reduced from 0.04 to 0.015 for heavier, slower cinematic feel)
+      currentFrame += (targetFrame - currentFrame) * 0.015;
 
       const frameToDraw = Math.round(currentFrame);
       if (frameToDraw !== lastRenderedFrame) {
@@ -144,6 +144,10 @@ const PortraitAnimation = () => {
         className={`w-full h-full mix-blend-screen transition-opacity duration-[2000ms] ease-in pointer-events-none object-cover ${loaded ? 'opacity-50 md:opacity-75' : 'opacity-0'
           }`}
       />
+      {/* Cinematic Vignette Overlays to blend frame edges seamlessly into the black background */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, transparent 30%, black 85%)' }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, black 5%, transparent 25%, transparent 75%, black 95%)' }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, black 0%, transparent 15%, transparent 85%, black 100%)' }} />
     </div>
   );
 };

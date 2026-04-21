@@ -412,13 +412,13 @@ export default function Portfolio() {
                   </button>
                 </div>
 
-                <SelectedWorksCards projects={projects} setTargetProject={setTargetProject} setCurrentPage={setCurrentPage} />
+                <SelectedWorksCards projects={projects} setTargetProject={setTargetProject} setCurrentPage={setCurrentPage} openGallery={openGallery} />
               </section>
             </div>
           )}
 
           {currentPage === 'projects' && (
-            <div>
+            <div className="w-full relative z-10 pt-12 md:pt-16">
               <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-3 text-center md:text-left">Projects</h1>
               <p className="text-sm text-zinc-400 mb-12 max-w-2xl text-center md:text-left mx-auto md:mx-0">
                 A curated collection of my technical endeavors, ranging from low-level systems to high-level system intelligence.
@@ -432,9 +432,9 @@ export default function Portfolio() {
                     className="group relative p-4 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl hover:bg-white/5 transition-all duration-300 opacity-0 animate-slide-up"
                     style={{ animationDelay: `${idx * 0.1}s` }}
                   >
-                    {/* Top Left Floating Picture Badge (Message Bubble Style) */}
+                    {/* Top Left Floating Picture Badge */}
                     <div
-                      className={`absolute -top-5 -left-5 z-30 transition-opacity duration-300 ${project.images && project.images.length > 0 ? 'opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto cursor-pointer flex' : 'hidden'}`}
+                      className={`absolute -top-5 -left-5 z-30 transition-all duration-300 ${project.images && project.images.length > 0 ? 'opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto cursor-pointer flex scale-95 group-hover:scale-100' : 'hidden'}`}
                       onClick={(e) => {
                         if (project.images && project.images.length > 0) {
                           e.stopPropagation();
@@ -605,18 +605,20 @@ export default function Portfolio() {
         </section>
       )}
 
-      <footer className="border-t border-white/5 py-12 mt-20">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="text-zinc-500 text-sm">
-            © 2026 Youssef Tabia All rights reserved.
+      {currentPage !== 'contact' && currentPage !== 'about' && (
+        <footer className="relative z-10 w-full border-t border-white/5 py-12 mt-20">
+          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="text-zinc-500 text-sm">
+              © 2026 Youssef Tabia All rights reserved.
+            </div>
+            <div className="flex gap-6">
+              <a href="https://github.com/us3ph" className="text-zinc-500 hover:text-white transition-colors"><Github size={20} /></a>
+              <a href="https://www.linkedin.com/in/youssef-tabia/" className="text-zinc-500 hover:text-white transition-colors"><Linkedin size={20} /></a>
+              <a href="mailto:contact@me" className="text-zinc-500 hover:text-white transition-colors"><Mail size={20} /></a>
+            </div>
           </div>
-          <div className="flex gap-6">
-            <a href="https://github.com/us3ph" className="text-zinc-500 hover:text-white transition-colors"><Github size={20} /></a>
-            <a href="https://www.linkedin.com/in/youssef-tabia/" className="text-zinc-500 hover:text-white transition-colors"><Linkedin size={20} /></a>
-            <a href="mailto:contact@me" className="text-zinc-500 hover:text-white transition-colors"><Mail size={20} /></a>
-          </div>
-        </div>
-      </footer>
+        </footer>
+      )}
     </div>
   );
 }
