@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/portfolio/static/css/main.3033de5a.css",
+    "main.js": "/portfolio/static/js/main.2cceaca6.js",
+    "static/js/641.938ec197.chunk.js": "/portfolio/static/js/641.938ec197.chunk.js",
+    "static/js/453.3afec7ef.chunk.js": "/portfolio/static/js/453.3afec7ef.chunk.js",
+    "static/media/minishell1.gif": "/portfolio/static/media/minishell1.34106e752000783bb46e.gif",
+    "static/media/Riadjadis1.png": "/portfolio/static/media/Riadjadis1.ca41a5edfdf86191c44e.png",
+    "static/media/ft_trancendence1.png": "/portfolio/static/media/ft_trancendence1.04c5c6efa55af7d901f3.png",
+    "static/media/Artillo2.png": "/portfolio/static/media/Artillo2.971227380ff24b52ec7e.png",
+    "static/media/Riadjadis2.png": "/portfolio/static/media/Riadjadis2.d3c6dd4343db860bbc76.png",
+    "static/media/Artillo1.png": "/portfolio/static/media/Artillo1.575a09cffe92bfaf863f.png",
+    "static/media/ATLASS2.png": "/portfolio/static/media/ATLASS2.f1c02c0ab12e609b8103.png",
+    "static/media/LLMShield1.png": "/portfolio/static/media/LLMShield1.0f0b1712509b19f8a6e2.png",
+    "static/media/born2beroot1.png": "/portfolio/static/media/born2beroot1.876d9cca2e8bd6871a86.png",
+    "static/media/LLMShield2.png": "/portfolio/static/media/LLMShield2.54b6dffda96f124083fd.png",
+    "static/media/ATLASS1.png": "/portfolio/static/media/ATLASS1.c92e5e9fd3b8bf6419a7.png",
+    "static/media/ft_trancendence2.png": "/portfolio/static/media/ft_trancendence2.b3bfbbf78628953336e6.png",
+    "static/media/VERA2.jpeg": "/portfolio/static/media/VERA2.11a2c02bbbd015dda820.jpeg",
+    "static/media/VERA1.jpeg": "/portfolio/static/media/VERA1.86602fb88238a9353a5c.jpeg",
+    "static/media/ATLASS3.png": "/portfolio/static/media/ATLASS3.43d02080bc1ed657e1a4.png",
+    "static/media/inception1.jpg": "/portfolio/static/media/inception1.270f5ab1197dc6d09c7a.jpg",
+    "static/media/inception2.jpg": "/portfolio/static/media/inception2.ab638dacf1ab47071b4a.jpg",
+    "static/media/OpenSec1.jpeg": "/portfolio/static/media/OpenSec1.cbb6af9ee8616fe4662d.jpeg",
+    "static/media/OpenSec2.jpeg": "/portfolio/static/media/OpenSec2.49968a4d6b3c1040fa5e.jpeg",
+    "index.html": "/portfolio/index.html",
+    "main.3033de5a.css.map": "/portfolio/static/css/main.3033de5a.css.map",
+    "main.2cceaca6.js.map": "/portfolio/static/js/main.2cceaca6.js.map",
+    "641.938ec197.chunk.js.map": "/portfolio/static/js/641.938ec197.chunk.js.map",
+    "453.3afec7ef.chunk.js.map": "/portfolio/static/js/453.3afec7ef.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3033de5a.css",
+    "static/js/main.2cceaca6.js"
+  ]
+}
