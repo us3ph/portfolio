@@ -309,9 +309,9 @@ export default function Portfolio() {
         if (!proj || !proj.images || proj.images.length === 0) return null;
         return (
           <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center p-4 animate-fade-in" onClick={() => setActiveGalleryId(null)}>
-            <button className="absolute top-6 right-6 md:top-8 md:right-8 p-3 md:p-4 rounded-full bg-white/10 hover:bg-white/20 text-white z-50 transition-all duration-300 hover:scale-110 hover:rotate-90 animate-slide-up">
+            <button className="absolute top-6 right-6 md:top-8 md:right-8 p-2 md:p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white z-50 transition-all duration-300 hover:scale-110 hover:rotate-90 animate-slide-up">
               <span className="sr-only">Close</span>
-              <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
             <div className="relative w-full max-w-6xl h-[75vh] flex items-center justify-center animate-slide-up" onClick={e => e.stopPropagation()}>
               {proj.images.length > 1 && (
@@ -452,7 +452,7 @@ export default function Portfolio() {
 
                     {/* Top Right Corner Link */}
                     <div className="absolute top-4 right-4 z-20">
-                      <a href="https://github.com/us3ph" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group/link block">
+                      <a href="https://github.com/us3ph/ATLASS" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group/link block">
                         <ExternalLink size={14} className="text-zinc-400 group-hover/link:text-white" />
                       </a>
                     </div>
@@ -556,9 +556,9 @@ export default function Portfolio() {
                         </button>
                       </div>
 
-                      <a href="https://github.com/us3ph" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-2 rounded-lg bg-black/90 backdrop-blur-xl border border-white/10 hover:bg-white/5 transition-colors group">
+                      <a href="https://github.com/us3ph/ATLASS" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-2 rounded-lg bg-black/90 backdrop-blur-xl border border-white/10 hover:bg-white/5 transition-colors group">
                         <Github className="text-white" size={14} />
-                        <span className="flex-1 text-[11px] text-white font-mono leading-none mt-[1px]">github.com/us3ph</span>
+                        <span className="flex-1 text-[11px] text-white font-mono leading-none mt-[1px]">github.com/us3ph/ATLASS</span>
                         <ExternalLink size={14} className="ml-auto text-zinc-500 group-hover:text-white transition-colors" />
                       </a>
 
@@ -612,7 +612,7 @@ export default function Portfolio() {
               © 2026 Youssef Tabia All rights reserved.
             </div>
             <div className="flex gap-6">
-              <a href="https://github.com/us3ph" className="text-zinc-500 hover:text-white transition-colors"><Github size={20} /></a>
+              <a href="https://github.com/us3ph/ATLASS" className="text-zinc-500 hover:text-white transition-colors"><Github size={20} /></a>
               <a href="https://www.linkedin.com/in/youssef-tabia/" className="text-zinc-500 hover:text-white transition-colors"><Linkedin size={20} /></a>
               <a href="mailto:contact@me" className="text-zinc-500 hover:text-white transition-colors"><Mail size={20} /></a>
             </div>
