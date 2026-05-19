@@ -462,9 +462,11 @@ export default function Portfolio() {
 
                     {/* Top Right Corner Link */}
                     <div className="absolute top-4 right-4 z-20">
-                      <a href="https://github.com/us3ph/ATLASS" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group/link block">
-                        <ExternalLink size={14} className="text-zinc-400 group-hover/link:text-white" />
-                      </a>
+                      {project.github && (
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group/link block" onClick={e => e.stopPropagation()}>
+                          <ExternalLink size={14} className="text-zinc-400 group-hover/link:text-white" />
+                        </a>
+                      )}
                     </div>
 
                     <div className="mb-3 relative z-10 flex items-center gap-3 md:block">
