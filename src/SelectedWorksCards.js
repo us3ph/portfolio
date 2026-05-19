@@ -84,6 +84,17 @@ const SelectedWorksCards = ({ projects, setTargetProject, setCurrentPage, openGa
                 setCurrentPage('projects');
               }}
             >
+              {/* Top Right Corner GitHub Link */}
+              {project.github && (
+                <div className="absolute top-4 right-4 z-20">
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group/link block" onClick={e => e.stopPropagation()}>
+                    {/* ExternalLink icon from lucide-react */}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-zinc-400 group-hover/link:text-white">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6m5-3h3m0 0v3m0-3L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              )}
 
               <div className="mb-3 flex flex-col md:flex-row items-center md:justify-center gap-2 md:gap-3">
                 <div className="p-2 rounded-xl bg-white/5 border border-white/10 inline-flex text-white shrink-0">

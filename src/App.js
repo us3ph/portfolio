@@ -28,6 +28,7 @@ const projects = [
   {
     id: 1,
     title: "Vera",
+    github: "https://github.com/us3ph/Vera",
     subtitle: "Intelligent Hybrid Agent",
     category: "AI & Automation",
     description: "A local-first AI assistant featuring a Hybrid NLU Engine that intelligently routes tasks between on-device processing (0ms latency) and cloud-based LLMs. Built with hardware-bound security and recursive agentic capabilities.",
@@ -39,6 +40,7 @@ const projects = [
   {
     id: 2,
     title: "OpenSec",
+    github: "https://github.com/us3ph/OpenSec",
     subtitle: "Autonomous Security Agent",
     category: "AI & Security",
     description: "An advanced autonomous security agent that proactively scans, identifies, and remediates system vulnerabilities. Leveraging AI driven insights, it executes automated CVE analysis, SSH enumeration, and critical patch management for hardened infrastructure.",
@@ -50,6 +52,7 @@ const projects = [
   {
     id: 3,
     title: "LLMShield",
+    github: "https://github.com/us3ph/LLMShield",
     subtitle: "Enterprise Grade AI Gateway",
     category: "AI Infrastructure",
     description: "A production grade AI Gateway acting as a secure middleware between apps and LLM providers. Features Zero Trust security, semantic caching for low latency, and intelligent routing that reduces costs by 60-80%.",
@@ -61,6 +64,7 @@ const projects = [
   {
     id: 4,
     title: "Inception",
+    github: "https://github.com/us3ph/Inception",
     subtitle: "Docker Infrastructure",
     category: "DevOps & Virtualization",
     description: "System administration project focusing on Docker containerization. Sets up a secure web infrastructure with NGINX (TLSv1.2+), WordPress, and MariaDB via Docker Compose.",
@@ -72,6 +76,7 @@ const projects = [
   {
     id: 5,
     title: "Minishell",
+    github: "https://github.com/us3ph/Minishell",
     subtitle: "Bash-like Shell",
     category: "Systems Programming",
     description: "Custom command line interpreter exploring process creation, file descriptors, and signal handling.",
@@ -83,6 +88,7 @@ const projects = [
   {
     id: 6,
     title: "born2beroot",
+    github: "https://github.com/us3ph/born2beroot",
     subtitle: "Server Administration",
     category: "DevOps",
     description: "Comprehensive Linux administration project configuring a Debian VM with strict security policies.",
@@ -94,6 +100,7 @@ const projects = [
   {
     id: 7,
     title: "Transcendence",
+    github: "https://github.com/us3ph/Transcendence",
     subtitle: "Log Management Infrastructure",
     category: "DevOps",
     description: "Collaborative project (team of 5) focusing on full stack development where I acted as the DevOps lead. Engineered a robust log management infrastructure using the ELK stack (Elasticsearch, Logstash, Kibana) with secure component access and data retention policies.",
@@ -105,6 +112,7 @@ const projects = [
   {
     id: 8,
     title: "ATLASS",
+    github: "https://github.com/us3ph/ATLASS",
     subtitle: "AI-Powered Job Matching Platform",
     category: "AI Integrations",
     description: "An AI-powered platform utilizing OpenRouter/OpenAI APIs to match developer profiles against job requirements. Features a 0-100 match score with detailed AI explanations, a one-click application system, and comprehensive dashboards for recruiters and applicants.",
@@ -116,6 +124,7 @@ const projects = [
   {
     id: 9,
     title: "Riadjadis",
+    github: "https://github.com/us3ph/Riadjadis",
     subtitle: "Booking Web Application",
     category: "Web Development",
     description: "A web application for booking stays and experiences with a clean reservation flow, availability checks, and a modern user dashboard for guests and administrators.",
@@ -127,6 +136,7 @@ const projects = [
   {
     id: 10,
     title: "Artillo",
+    github: "https://github.com/us3ph/Artillo",
     subtitle: "Artisan Store Web App",
     category: "E-Commerce",
     description: "An online store focused on poufs, rugs, and artisan handmade products with curated collections, product pages, and a smooth shopping experience.",
