@@ -76,7 +76,7 @@ const projects = [
   {
     id: 5,
     title: "Minishell",
-    github: "https://github.com/us3ph/Minishell",
+    github: "https://github.com/ma1loc/minishell",
     subtitle: "Bash-like Shell",
     category: "Systems Programming",
     description: "Custom command line interpreter exploring process creation, file descriptors, and signal handling.",
@@ -100,7 +100,7 @@ const projects = [
   {
     id: 7,
     title: "Transcendence",
-    github: "https://github.com/us3ph/Transcendence",
+    github: "https://github.com/samir-ouaammou/Transcendence",
     subtitle: "Log Management Infrastructure",
     category: "DevOps",
     description: "Collaborative project (team of 5) focusing on full stack development where I acted as the DevOps lead. Engineered a robust log management infrastructure using the ELK stack (Elasticsearch, Logstash, Kibana) with secure component access and data retention policies.",
