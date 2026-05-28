@@ -388,8 +388,8 @@ export default function Portfolio() {
                 </h1>
 
                 <p className="max-w-[38ch] mx-auto md:mx-0 text-base md:text-xl text-zinc-400 leading-7 md:leading-relaxed text-center md:text-left mb-12 opacity-0 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-                  Software Engineer specializing in AI agents, systems programming, and scalable architecture.
-                  Crafting intelligent solutions at <span className="text-white font-medium">1337 (42 Network)</span>.
+                  Software Engineer Full-Stack specializing in AI Systems.
+                  Crafting intelligent solutions at <span className="text-white font-medium">1337</span>.
                 </p>
 
                 <div className="flex flex-wrap justify-center md:justify-start gap-4 opacity-0 animate-slide-up" style={{ animationDelay: '0.3s' }}>
@@ -568,9 +568,9 @@ export default function Portfolio() {
                         </button>
                       </div>
 
-                      <a href="https://github.com/us3ph/ATLASS" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-2 rounded-lg bg-black/90 backdrop-blur-xl border border-white/10 hover:bg-white/5 transition-colors group">
+                      <a href="https://github.com/us3ph" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-2 rounded-lg bg-black/90 backdrop-blur-xl border border-white/10 hover:bg-white/5 transition-colors group">
                         <Github className="text-white" size={14} />
-                        <span className="flex-1 text-[11px] text-white font-mono leading-none mt-[1px]">github.com/us3ph/ATLASS</span>
+                        <span className="flex-1 text-[11px] text-white font-mono leading-none mt-[1px]">github.com/us3ph</span>
                         <ExternalLink size={14} className="ml-auto text-zinc-500 group-hover:text-white transition-colors" />
                       </a>
 
@@ -624,7 +624,7 @@ export default function Portfolio() {
               © 2026 Youssef Tabia All rights reserved.
             </div>
             <div className="flex gap-6">
-              <a href="https://github.com/us3ph/ATLASS" className="text-zinc-500 hover:text-white transition-colors"><Github size={20} /></a>
+              <a href="https://github.com/us3ph" className="text-zinc-500 hover:text-white transition-colors"><Github size={20} /></a>
               <a href="https://www.linkedin.com/in/youssef-tabia/" className="text-zinc-500 hover:text-white transition-colors"><Linkedin size={20} /></a>
               <a href="mailto:contact@me" className="text-zinc-500 hover:text-white transition-colors"><Mail size={20} /></a>
             </div>
