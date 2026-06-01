@@ -24,6 +24,7 @@ import Inception1 from './assest/inception1.jpg';
 import Inception2 from './assest/inception2.jpg';
 import PortraitAnimation from './PortraitAnimation';
 import SelectedWorksCards from './SelectedWorksCards';
+import ShapeBlur from './ShapeBlur';
 const projects = [
   {
     id: 1,
@@ -439,9 +440,10 @@ export default function Portfolio() {
                   <div
                     key={project.id}
                     id={`project-${project.id}`}
-                    className="group relative p-4 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl hover:bg-white/5 transition-all duration-300 opacity-0 animate-slide-up"
+                    className="group relative z-0 p-4 rounded-2xl bg-black/40 backdrop-blur-xl hover:bg-white/5 transition-all duration-300 opacity-0 animate-slide-up"
                     style={{ animationDelay: `${idx * 0.1}s` }}
                   >
+                    <ShapeBlur className="rounded-2xl" />
                     {/* Top Left Floating Picture Badge */}
                     <div
                       className={`absolute -top-5 -left-5 z-30 transition-all duration-300 ${project.images && project.images.length > 0 ? 'opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto cursor-pointer flex scale-95 group-hover:scale-100' : 'hidden'}`}
@@ -469,39 +471,41 @@ export default function Portfolio() {
                       )}
                     </div>
 
-                    <div className="mb-3 relative z-10 flex items-center gap-3 md:block">
-                      <div className="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-3 w-full mb-3">
-                        <div className="p-2 rounded-xl bg-white/5 border border-white/10 inline-flex shrink-0 mb-1 md:mb-0">
-                          <project.icon size={18} className="text-white" />
+                    <div className="relative z-10">
+                      <div className="mb-3 relative z-10 flex items-center gap-3 md:block">
+                        <div className="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-3 w-full mb-3">
+                          <div className="p-2 rounded-xl bg-white/5 border border-white/10 inline-flex shrink-0 mb-1 md:mb-0">
+                            <project.icon size={18} className="text-white" />
+                          </div>
+                          <h3 className="text-base font-bold mb-0 group-hover:text-zinc-200 transition-colors text-center w-full md:text-left md:self-center">{project.title}</h3>
                         </div>
-                        <h3 className="text-base font-bold mb-0 group-hover:text-zinc-200 transition-colors text-center w-full md:text-left md:self-center">{project.title}</h3>
                       </div>
-                    </div>
-                    <div className="flex gap-2 mb-3">
-                      <span className="text-zinc-500 font-mono text-xs border-l border-zinc-700 pl-2">
-                        {project.category}
-                      </span>
-                    </div>
-
-                    <p className="text-xs text-zinc-400 mb-4 leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    <div className="space-y-2 mb-4">
-                      {project.features.map((feature, i) => (
-                        <div key={i} className="flex items-center gap-2 text-xs text-zinc-300">
-                          <div className="w-1 h-1 rounded-full bg-white" />
-                          {feature}
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="grid grid-flow-col auto-cols-fr gap-1 md:gap-1.5 md:flex md:flex-wrap md:justify-center pt-4 border-t border-white/10">
-                      {project.tech.map(t => (
-                        <span key={t} className="min-w-0 text-center text-[9px] md:text-xs px-1 md:px-3 py-0.5 md:py-1 rounded-full bg-white/5 text-zinc-300 border border-white/5">
-                          {t}
+                      <div className="flex gap-2 mb-3">
+                        <span className="text-zinc-500 font-mono text-xs border-l border-zinc-700 pl-2">
+                          {project.category}
                         </span>
-                      ))}
+                      </div>
+
+                      <p className="text-xs text-zinc-400 mb-4 leading-relaxed">
+                        {project.description}
+                      </p>
+
+                      <div className="space-y-2 mb-4">
+                        {project.features.map((feature, i) => (
+                          <div key={i} className="flex items-center gap-2 text-xs text-zinc-300">
+                            <div className="w-1 h-1 rounded-full bg-white" />
+                            {feature}
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="grid grid-flow-col auto-cols-fr gap-1 md:gap-1.5 md:flex md:flex-wrap md:justify-center pt-4 border-t border-white/10">
+                        {project.tech.map(t => (
+                          <span key={t} className="min-w-0 text-center text-[9px] md:text-xs px-1 md:px-3 py-0.5 md:py-1 rounded-full bg-white/5 text-zinc-300 border border-white/5">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}

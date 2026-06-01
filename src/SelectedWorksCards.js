@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import ShapeBlur from './ShapeBlur';
 
 const SelectedWorksCards = ({ projects, setTargetProject, setCurrentPage, openGallery }) => {
   const sectionRef = useRef(null);
@@ -78,12 +79,13 @@ const SelectedWorksCards = ({ projects, setTargetProject, setCurrentPage, openGa
             style={{ zIndex: idx + 1 }}
           >
             <div
-              className="group relative p-5 rounded-2xl border border-white/10 bg-black/90 backdrop-blur-xl hover:bg-white/5 cursor-pointer overflow-hidden"
+              className="group relative z-0 p-5 rounded-2xl bg-black/90 backdrop-blur-xl hover:bg-white/5 cursor-pointer"
               onClick={() => {
                 setTargetProject(project.id);
                 setCurrentPage('projects');
               }}
             >
+              <ShapeBlur className="rounded-2xl" />
               {/* Top Right Corner GitHub Link */}
               {project.github && (
                 <div className="absolute top-4 right-4 z-20">
@@ -96,22 +98,24 @@ const SelectedWorksCards = ({ projects, setTargetProject, setCurrentPage, openGa
                 </div>
               )}
 
-              <div className="mb-3 flex flex-col md:flex-row items-center md:justify-center gap-2 md:gap-3">
-                <div className="p-2 rounded-xl bg-white/5 border border-white/10 inline-flex text-white shrink-0">
-                  <project.icon size={18} />
+              <div className="relative z-10">
+                <div className="mb-3 flex flex-col md:flex-row items-center md:justify-center gap-2 md:gap-3">
+                  <div className="p-2 rounded-xl bg-white/5 border border-white/10 inline-flex text-white shrink-0">
+                    <project.icon size={18} />
+                  </div>
+                  <h3 className="text-base font-bold mb-0 group-hover:text-zinc-200 transition-colors text-center w-full md:w-auto">{project.title}</h3>
                 </div>
-                <h3 className="text-base font-bold mb-0 group-hover:text-zinc-200 transition-colors text-center w-full md:w-auto">{project.title}</h3>
-              </div>
-              <p className="text-xs text-zinc-400 mb-4 line-clamp-3">{project.description}</p>
-              <div className="flex flex-wrap gap-1.5 justify-center md:justify-center">
-                {project.tech.filter(t => t !== 'Redis').map(t => (
-                  <span key={t} className="inline-block text-center text-[9px] md:text-xs px-2 md:px-3 py-0.5 rounded-full border border-white/10 bg-white/5 text-zinc-400">
-                    {t}
-                  </span>
-                ))}
-                {project.title === 'OpenSec' && (
-                  <span className="hidden md:inline-block text-center text-[9px] md:text-xs px-2 md:px-3 py-0.5 rounded-full border border-white/10 bg-white/5 text-zinc-400">AI</span>
-                )}
+                <p className="text-xs text-zinc-400 mb-4 line-clamp-3">{project.description}</p>
+                <div className="flex flex-wrap gap-1.5 justify-center md:justify-center">
+                  {project.tech.filter(t => t !== 'Redis').map(t => (
+                    <span key={t} className="inline-block text-center text-[9px] md:text-xs px-2 md:px-3 py-0.5 rounded-full border border-white/10 bg-white/5 text-zinc-400">
+                      {t}
+                    </span>
+                  ))}
+                  {project.title === 'OpenSec' && (
+                    <span className="hidden md:inline-block text-center text-[9px] md:text-xs px-2 md:px-3 py-0.5 rounded-full border border-white/10 bg-white/5 text-zinc-400">AI</span>
+                  )}
+                </div>
               </div>
             </div>
           </div>
