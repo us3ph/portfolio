@@ -24,6 +24,7 @@ import Inception1 from './assest/inception1.jpg';
 import Inception2 from './assest/inception2.jpg';
 import PortraitAnimation from './PortraitAnimation';
 import SelectedWorksCards from './SelectedWorksCards';
+import Lanyard from './Lanyard';
 import ShapeBlur from './ShapeBlur';
 const projects = [
   {
@@ -32,7 +33,7 @@ const projects = [
     github: "https://github.com/us3ph/Vera",
     subtitle: "Intelligent Hybrid Agent",
     category: "AI & Automation",
-    description: "A local-first AI assistant featuring a Hybrid NLU Engine that intelligently routes tasks between on-device processing (0ms latency) and cloud-based LLMs. Built with hardware-bound security and recursive agentic capabilities.",
+    description: "Local first AI assistant with a hybrid routing layer, simple intents handled fully on device, complex tasks escalated to cloud LLMs. Features voice + chat input, a Dynamic Island UI, and an agentic loop for multi step tasks",
     features: ["Hybrid NLU Engine (Local/Cloud)", "Recursive Agentic Loop", "Hardware-Bound Security", "Multi-Channel Control"],
     tech: ["Python", "PySide6", "LangChain", "SQLite"],
     icon: Brain,
@@ -136,12 +137,12 @@ const projects = [
   },
   {
     id: 10,
-    title: "Artillo",
+    title: "Pouffa",
     github: "https://github.com/us3ph/Artillo",
     subtitle: "Artisan Store Web App",
     category: "E-Commerce",
     description: "An online store focused on poufs, rugs, and artisan handmade products with curated collections, product pages, and a smooth shopping experience.",
-    features: ["Catalog for Poufs and Rugs", "Artisan Product Collections", "Product Detail and Shopping Flow", "Mobile Friendly Storefront"],
+    features: ["Catalog for Poufs", "Artisan Product Collections", "Product Detail and Shopping Flow", "Mobile Friendly Storefront"],
     tech: ["React", "TypeScript", "NestJS", "PostgreSQL"],
     icon: Code2,
     images: [Artillo1, Artillo2]
@@ -584,6 +585,10 @@ export default function Portfolio() {
                         <ExternalLink size={14} className="ml-auto text-zinc-500 group-hover:text-white transition-colors" />
                       </a>
                     </div>
+                  </div>
+
+                  <div className="w-full h-[400px] mt-8 relative rounded-2xl overflow-hidden bg-black/20 border border-white/10">
+                     <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
                   </div>
                 </div>
               )}
