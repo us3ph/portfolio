@@ -24,7 +24,6 @@ import Inception1 from './assest/inception1.jpg';
 import Inception2 from './assest/inception2.jpg';
 import PortraitAnimation from './PortraitAnimation';
 import SelectedWorksCards from './SelectedWorksCards';
-import Lanyard from './Lanyard';
 import ShapeBlur from './ShapeBlur';
 const projects = [
   {
@@ -390,7 +389,7 @@ export default function Portfolio() {
                 </h1>
 
                 <p className="max-w-[38ch] mx-auto md:mx-0 text-base md:text-xl text-zinc-400 leading-7 md:leading-relaxed text-center md:text-left mb-12 opacity-0 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-                  Software Engineer Full-Stack specializing in AI Systems.
+                  AI Engineer specializing in LLM security, agentic systems, and production AI infrastructure.
                   Crafting intelligent solutions at <span className="text-white font-medium">1337</span>.
                 </p>
 
@@ -585,10 +584,6 @@ export default function Portfolio() {
                         <ExternalLink size={14} className="ml-auto text-zinc-500 group-hover:text-white transition-colors" />
                       </a>
                     </div>
-                  </div>
-
-                  <div className="w-full h-[400px] mt-8 relative rounded-2xl overflow-hidden bg-black/20 border border-white/10">
-                     <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
                   </div>
                 </div>
               )}
