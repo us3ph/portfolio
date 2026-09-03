@@ -389,7 +389,7 @@ export default function Portfolio() {
                 </h1>
 
                 <p className="max-w-[38ch] mx-auto md:mx-0 text-base md:text-xl text-zinc-400 leading-7 md:leading-relaxed text-center md:text-left mb-12 opacity-0 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-                  AI Software Engineer specializing in LLM security, agentic systems, and production AI infrastructure.
+                  AI Software Engineer specializing in LLM security, agentic systems, and AI infrastructure.
                   Crafting intelligent solutions at <span className="text-white font-medium">1337</span>.
                 </p>
 
